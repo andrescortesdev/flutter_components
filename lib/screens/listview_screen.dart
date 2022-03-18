@@ -16,15 +16,19 @@ class ListViewScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('List view 1'),
+          elevation: 0,
+          backgroundColor: Colors.deepOrangeAccent,
         ),
-        body: ListView(
-          children: [
-            ...options.map((option) => ListTile(
-                  leading: Icon(Icons.ac_unit_sharp),
-                  title: Text(option),
-                  trailing: const Icon(Icons.arrow_forward_ios_outlined),
-                ))
-          ],
-        ));
+        body: ListView.separated(
+            itemBuilder:(context, index) => ListTile(
+              title: Text(options[index]),
+              trailing: Icon(Icons.arrow_forward_ios_outlined),
+              leading: Icon(Icons.wine_bar_sharp),
+              onTap: (){
+                print(options[index]);
+              } ,
+            ) ,
+            separatorBuilder:(context,index)=> const Divider(),
+            itemCount: options.length));
   }
 }
